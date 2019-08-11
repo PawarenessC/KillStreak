@@ -29,6 +29,8 @@ class Main extends pluginBase implements Listener{
  		$this->getLogger()->info("バージョン:v{$this->getDescription()->getVersion()}");
  		$this->getLogger()->info("=========================");
 		
+		$this->getServer()->getPluginManager()->registerEvents($this, $this);
+		
 		$this->config = new Config($this->getDataFolder() . "Setup.yml", Config::YAML, array(
 			"プラグイン"=>"MoneySystem",
 			"1"=> array(
