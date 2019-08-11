@@ -123,7 +123,7 @@ class Main extends pluginBase implements Listener{
 		$kname  = $killer->getName();
 		$dname  = $player->getName();
 		$this->kill[$dname] = 0;
-		$this->kill[$kname]+1;
+		$this->kill[$kname]++;
 		var_dump($this->kill[$kname]);
 		$k = $this->kill[$kname];
 		var_dump($k);
