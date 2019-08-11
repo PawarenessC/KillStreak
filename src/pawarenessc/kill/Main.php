@@ -1,6 +1,6 @@
 <?php
 
-namespace pawarenessc\slot;
+namespace pawarenessc\kill;
 
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
