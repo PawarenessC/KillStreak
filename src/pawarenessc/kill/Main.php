@@ -112,6 +112,7 @@ class Main extends pluginBase implements Listener{
 	
 	public function onJoin(PlayerJoinEvent $event){
 		$player = $event->getPlayer();
+		$name = $player->getName();
 		$this->kill[$name] = 0;
 	}
 	
