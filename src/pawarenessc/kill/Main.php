@@ -114,6 +114,7 @@ class Main extends pluginBase implements Listener{
 		$player = $event->getPlayer();
 		$name = $player->getName();
 		$this->kill[$name] = 0;
+		var_dump($this->kill[$name]);
 	}
 	
 	public function onDeath(PlayerDeathEvent $event){
@@ -123,10 +124,12 @@ class Main extends pluginBase implements Listener{
 		$dname  = $player->getName();
 		$this->kill[$dname] = 0;
 		$this->kill[$kname]+1;
+		var_dump($this->kill[$kname]);
 		$k = $this->kill[$kname];
+		var_dump($k);
 		$cfg = $this->config->getAll();
-		$this->addMoney($cfg[$k]["報酬"],$killer);
-		
+		//$this->addMoney($cfg[$k]["報酬"],$killer);
+		var_dump($cfg[$k]["表示"]);
 		if($cfg[$k]["表示"]){
 			$msg = $cfg[$k]["Message"];
 			$msg = str_replace("{name}", $kname, $msg);
