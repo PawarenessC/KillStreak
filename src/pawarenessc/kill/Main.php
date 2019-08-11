@@ -110,6 +110,7 @@ class Main extends pluginBase implements Listener{
 	public function onJoin(PlayerJoinEvent $event){
 		$player = $event->getPlayer();
 		$this->kill[$name] = 0;
+	}
 	
 	public function onDeath(PlayerDeathEvent $event){
 		$killer = $event->getPlayer();
@@ -121,7 +122,7 @@ class Main extends pluginBase implements Listener{
 		$cfg = $this->config->getAll();
 		$this->addMoney($cfg[$k]["報酬"],$killer);
 		
-		if($cfg[$k]["表示"])
+		if($cfg[$k]["表示"]){
 			$msg = $cfg[$k]["Message"];
 			$msg = str_replace("{name}", $kname, $msg);
 			$this->getServer()->broadcastMessage($msg);
@@ -145,6 +146,3 @@ class Main extends pluginBase implements Listener{
 		}
 	}
 }
-		
-			
-			
