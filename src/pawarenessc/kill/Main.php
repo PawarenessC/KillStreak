@@ -119,6 +119,7 @@ class Main extends pluginBase implements Listener{
 		$kname  = $killer->getName();
 		$dname  = $player->getName();
 		$this->kill[$dname] = 0;
+		$this->kill[$kname]+1;
 		$k = $this->kill[$kname];
 		$cfg = $this->config->getAll();
 		$this->addMoney($cfg[$k]["報酬"],$killer);
