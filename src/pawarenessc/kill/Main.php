@@ -10,6 +10,8 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 
+use pocketmine\event\entity\EntityDamageByEntityEvent;
+
 use pocketmine\Player;
 use pocketmine\Server;
 
@@ -114,26 +116,27 @@ class Main extends pluginBase implements Listener{
 		$player = $event->getPlayer();
 		$name = $player->getName();
 		$this->kill[$name] = 0;
-		var_dump($this->kill[$name]);
 	}
 	
 	public function onDeath(PlayerDeathEvent $event){
-		$killer = $event->getPlayer();
-		$player = $event->getEntity();
-		$kname  = $killer->getName();
-		$dname  = $player->getName();
-		$this->kill[$dname] = 0;
-		$this->kill[$kname]++;
-		var_dump($this->kill[$kname]);
-		$k = $this->kill[$kname];
-		var_dump($k);
-		$cfg = $this->config->getAll();
-		//$this->addMoney($cfg[$k]["報酬"],$killer);
-		var_dump($cfg[$k]["表示"]);
-		if($cfg[$k]["表示"]){
-			$msg = $cfg[$k]["Message"];
-			$msg = str_replace("{name}", $kname, $msg);
-			$this->getServer()->broadcastMessage($msg);
+		$entity = $event->getEntity();
+		$cause = $entity->getLastDamageCause();
+		if($cause instanceof EntityDamageByEntityEvent){
+			$killer = $cause->getDamager()
+			if($killer instanceof Player){
+				$ename = $entity->getName();
+				$kname = $killer->getName();
+				$this->kill[$ename] = 0;
+				$this->kill[$kname]++;
+				$k = $this->kill[$kname];
+				$cfg = $this->config->getAll();
+				$this->addMoney($cfg[$k]["報酬"],$killer);
+				if($cfg[$k]["表示"]){
+					$msg = $cfg[$k]["Message"];
+					$msg = str_replace("{name}", $kname, $msg);
+					$this->getServer()->broadcastMessage($msg);
+				}
+			}
 		}
 	}
 	
