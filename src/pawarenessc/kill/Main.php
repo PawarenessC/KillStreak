@@ -122,7 +122,7 @@ class Main extends pluginBase implements Listener{
 		$entity = $event->getEntity();
 		$cause = $entity->getLastDamageCause();
 		if($cause instanceof EntityDamageByEntityEvent){
-			$killer = $cause->getDamager()
+			$killer = $cause->getDamager();
 			if($killer instanceof Player){
 				$ename = $entity->getName();
 				$kname = $killer->getName();
